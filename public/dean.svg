@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <rect width="200" height="200" fill="#132845"/>
+  <circle cx="100" cy="75" r="35" fill="#FFC145" opacity="0.3"/>
+  <circle cx="100" cy="75" r="30" fill="#FFC145" opacity="0.5"/>
+  <text x="100" y="82" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="700" fill="white">DP</text>
+  <rect x="40" y="120" width="120" height="50" rx="10" fill="#FFC145" opacity="0.3"/>
+  <text x="100" y="150" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="white" opacity="0.7">DEAN - PG DEPT</text>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <rect width="200" height="200" fill="#132845"/>
+  <circle cx="100" cy="75" r="35" fill="#FF7A29" opacity="0.3"/>
+  <circle cx="100" cy="75" r="30" fill="#FF7A29" opacity="0.5"/>
+  <text x="100" y="82" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="28" font-weight="700" fill="white">VP</text>
+  <rect x="50" y="120" width="100" height="50" rx="10" fill="#FF7A29" opacity="0.3"/>
+  <text x="100" y="150" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="white" opacity="0.7">VICE PRINCIPAL</text>
+</svg>
