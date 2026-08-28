@@ -1,1 +1,0 @@
-import{j as r}from"./runtime-chunk-HK23JJVH-DXiTaWDb.js";import"./runtime-chunk-GZ7C2GJM-CViwxHyI.js";import"./runtime-chunk-PDASWDVC-CeUplt-B.js";import{el as p,e9 as i}from"./runtime-updater-GOXAMNAK-DMwT9IkA.js";import"./index-j9Gq34-_.js";p("ShapeBlendGeometry",(e,m,o)=>new r(e,m,o)),i("shape-blends");

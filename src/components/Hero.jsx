@@ -75,8 +75,8 @@ export default function Hero() {
           <a href="#problems" className="btn btn-primary">
             Browse problem statements ↓
           </a>
-          <a href="#rules" className="btn btn-ghost">
-            Read submission rules
+          <a href="/register" className="btn btn-ghost">
+            Register Now
           </a>
         </div>
         <div className="stat-strip">
