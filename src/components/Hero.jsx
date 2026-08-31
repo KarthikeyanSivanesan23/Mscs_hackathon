@@ -126,13 +126,6 @@ export default function Hero() {
           <Countdown targetDate="2026-09-07T23:59:59" label="Last Date of Registration" date="07 September 2026" />
           <Countdown targetDate="2026-09-10T09:00:00" label="Event Date" date="10 September 2026" />
         </div>
-
-        <div className="invitation-section">
-          <div className="invitation-label">Invitation</div>
-          <div className="invitation-card" id="invitationCard">
-            <img src="/inv.jpeg" alt="Invitation" className="invitation-img" />
-          </div>
-        </div>
       </div>
       {/* Robot on the right */}
       <div className="hero-spline" style={{ zIndex: 10 }}>

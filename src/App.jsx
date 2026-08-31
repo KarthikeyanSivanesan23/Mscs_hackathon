@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
+import Invitation from './components/Invitation'
 import Timeline from './components/Timeline'
 import ProblemStatements from './components/ProblemStatements'
 import Rules from './components/Rules'
@@ -25,6 +26,7 @@ function HomePage() {
   return (
     <>
       <Hero />
+      <Invitation />
       <Timeline />
       <ProblemStatements onOpenModal={setModalPs} />
       <Rules />
