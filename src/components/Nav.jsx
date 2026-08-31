@@ -21,7 +21,7 @@ export default function Nav() {
           <a href="/#faq" onClick={() => setMenuOpen(false)}>FAQ</a>
           <div className="mobile-ctas">
             <a className="nav-cta" href="/#rules" onClick={() => setMenuOpen(false)}>Get the format PPT</a>
-            <Link className="nav-cta nav-register" to="/register" onClick={() => setMenuOpen(false)}>Register Now</Link>
+            <a className="nav-cta nav-register" href="/register" onClick={() => setMenuOpen(false)}>Register Now</a>
           </div>
         </nav>
         <div className="nav-right">
