@@ -169,6 +169,26 @@ nav.links a:hover{color:var(--text);}
 }
 @media (max-width:500px){ .timer-section{flex-direction:column;} }
 
+/* Invitation Section */
+.invitation-section{
+  margin-top:40px; text-align:center;
+}
+.invitation-label{
+  font-family:'JetBrains Mono'; font-size:14px; font-weight:600; color:var(--saffron);
+  text-transform:uppercase; letter-spacing:1px; margin-bottom:20px;
+}
+.invitation-card{
+  max-width:500px; margin:0 auto;
+  border-radius:16px; overflow:hidden;
+  transition:transform 0.15s ease-out;
+  transform-style:preserve-3d;
+  box-shadow:0 20px 60px -15px rgba(121,70,229,0.3), 0 0 40px rgba(121,70,229,0.1);
+  border:1px solid rgba(255,255,255,0.1);
+}
+.invitation-img{
+  width:100%; height:auto; display:block;
+}
+
 /* hero spline */
 .hero-spline{
   position:absolute; top:-60px; right:-40px; bottom:0;

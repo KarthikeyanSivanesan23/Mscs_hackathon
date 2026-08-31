@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { SplineScene } from './SplineScene'
 import HolographicBeams from './ui/beams-background'
 
@@ -55,6 +55,30 @@ function Countdown({ targetDate, label, date }) {
 }
 
 export default function Hero() {
+  useEffect(() => {
+    const card = document.getElementById('invitationCard')
+    if (!card) return
+    const handleMouseMove = (e) => {
+      const rect = card.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+      const centerX = rect.width / 2
+      const centerY = rect.height / 2
+      const rotateX = ((y - centerY) / centerY) * -10
+      const rotateY = ((x - centerX) / centerX) * 10
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02,1.02,1.02)`
+    }
+    const handleMouseLeave = () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)'
+    }
+    card.addEventListener('mousemove', handleMouseMove)
+    card.addEventListener('mouseleave', handleMouseLeave)
+    return () => {
+      card.removeEventListener('mousemove', handleMouseMove)
+      card.removeEventListener('mouseleave', handleMouseLeave)
+    }
+  }, [])
+
   return (
     <section className="hero">
       <HolographicBeams density={15} speed={1.5} aberration={3} opacity={90} />
@@ -101,6 +125,13 @@ export default function Hero() {
         <div className="timer-section">
           <Countdown targetDate="2026-09-07T23:59:59" label="Last Date of Registration" date="07 September 2026" />
           <Countdown targetDate="2026-09-10T09:00:00" label="Event Date" date="10 September 2026" />
+        </div>
+
+        <div className="invitation-section">
+          <div className="invitation-label">Invitation</div>
+          <div className="invitation-card" id="invitationCard">
+            <img src="/inv.jpeg" alt="Invitation" className="invitation-img" />
+          </div>
         </div>
       </div>
       {/* Robot on the right */}
