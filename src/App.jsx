@@ -11,6 +11,8 @@ import Footer from './components/Footer'
 import Modal from './components/Modal'
 import Register from './pages/Register'
 import Admin from './pages/Admin'
+import Terms from './pages/Terms'
+import Privacy from './pages/Privacy'
 
 function HomePage() {
   const [modalPs, setModalPs] = useState(null)
@@ -45,6 +47,8 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
         </Routes>
       </main>
       <Footer />
