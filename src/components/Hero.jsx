@@ -80,6 +80,7 @@ export default function Hero() {
             Register Now
           </Link>
         </div>
+        <div className="hero-hint">Please wait, Registration is loading...</div>
         <div className="stat-strip">
           <div className="stat">
             <div className="num">226</div>

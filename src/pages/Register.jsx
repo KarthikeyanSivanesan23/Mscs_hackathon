@@ -298,7 +298,6 @@ export default function Register() {
           <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }} disabled={sending}>
             {sending ? 'Sending...' : 'Register Team'}
           </button>
-          {sending && <span className="form-hint" style={{ textAlign: 'center', marginTop: 8 }}>Please wait, Registration is loading...</span>}
 
           <div className="form-footer">
             Already registered? <Link to="/">Go back home</Link>
