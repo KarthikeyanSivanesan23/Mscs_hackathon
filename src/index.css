@@ -83,8 +83,9 @@ nav.links a:hover{color:var(--text);}
   nav.links{
     display:none; position:absolute; top:100%; left:0; right:0;
     flex-direction:column; gap:0; padding:16px 28px;
-    background:rgba(8,18,34,0.95); backdrop-filter:blur(12px);
+    background:rgba(8,18,34,0.97); backdrop-filter:blur(12px);
     border-bottom:1px solid var(--line);
+    z-index:200;
   }
   nav.links.open{display:flex;}
   nav.links a{padding:12px 0; border-bottom:1px solid var(--line); font-size:15px;}
