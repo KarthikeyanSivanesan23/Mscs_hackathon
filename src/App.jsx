@@ -13,6 +13,7 @@ import Register from './pages/Register'
 import Admin from './pages/Admin'
 import Terms from './pages/Terms'
 import Privacy from './pages/Privacy'
+import DataRecovery from './components/DataRecovery'
 
 function HomePage() {
   const [modalPs, setModalPs] = useState(null)
@@ -41,6 +42,7 @@ function HomePage() {
 export default function App() {
   return (
     <>
+      <DataRecovery />
       <Nav />
       <main>
         <Routes>

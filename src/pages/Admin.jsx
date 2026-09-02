@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import * as XLSX from 'xlsx'
+import { onRegistrationsChange, deleteRegistration as deleteReg } from '../lib/firebase'
 
 export default function Admin() {
   const [registrations, setRegistrations] = useState([])
@@ -8,10 +9,11 @@ export default function Admin() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    if (authenticated) {
-      const data = JSON.parse(localStorage.getItem('registrations') || '[]')
+    if (!authenticated) return
+    const unsubscribe = onRegistrationsChange((data) => {
       setRegistrations(data)
-    }
+    })
+    return () => unsubscribe()
   }, [authenticated])
 
   const handleLogin = (e) => {
@@ -24,11 +26,15 @@ export default function Admin() {
     }
   }
 
-  const handleDelete = (id) => {
+  const handleDelete = async (key) => {
     if (!confirm('Delete this registration?')) return
-    const updated = registrations.filter((r) => r.id !== id)
-    localStorage.setItem('registrations', JSON.stringify(updated))
-    setRegistrations(updated)
+    try {
+      await deleteReg(key)
+    } catch {
+      const updated = registrations.filter((r) => r.firebaseKey !== key)
+      localStorage.setItem('registrations', JSON.stringify(updated))
+      setRegistrations(updated)
+    }
   }
 
   const downloadExcel = () => {
@@ -144,7 +150,7 @@ export default function Admin() {
               </thead>
               <tbody>
                 {registrations.map((r, i) => (
-                  <tr key={r.id}>
+                  <tr key={r.firebaseKey || r.id}>
                     <td>{i + 1}</td>
                     <td>{r.teamName}</td>
                     <td>{r.department}</td>
@@ -156,7 +162,7 @@ export default function Admin() {
                       <span className="members-count">6 members</span>
                     </td>
                     <td>
-                      <button className="btn-delete" onClick={() => handleDelete(r.id)} title="Delete">
+                      <button className="btn-delete" onClick={() => handleDelete(r.firebaseKey)} title="Delete">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <polyline points="3 6 5 6 21 6" />
                           <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />

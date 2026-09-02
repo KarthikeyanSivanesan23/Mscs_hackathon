@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import emailjs from '@emailjs/browser'
 import { PROBLEM_STATEMENTS } from '../data/ps-data'
 import HolographicBeams from '../components/ui/beams-background'
+import { saveRegistration, getRegistrations } from '../lib/firebase'
 
 const EMAILJS_SERVICE_ID = 'service_c49w534'
 const EMAILJS_TEMPLATE_ID = 'template_entzp8b'
@@ -57,7 +58,7 @@ export default function Register() {
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const newErrors = {}
 
@@ -75,9 +76,19 @@ export default function Register() {
     if (!form.gmail.trim()) newErrors.gmail = 'Gmail is required'
     else if (!validateGmail(form.gmail)) newErrors.gmail = 'Please enter a valid Gmail address'
     else {
-      const existing = JSON.parse(localStorage.getItem('registrations') || '[]')
-      const emailExists = existing.some((r) => r.gmail.toLowerCase() === form.gmail.toLowerCase())
-      if (emailExists) newErrors.gmail = 'This email is already registered'
+      try {
+        const snapshot = await getRegistrations()
+        const data = snapshot.val()
+        if (data) {
+          const existing = Object.values(data)
+          const emailExists = existing.some((r) => r.gmail && r.gmail.toLowerCase() === form.gmail.toLowerCase())
+          if (emailExists) newErrors.gmail = 'This email is already registered'
+        }
+      } catch {
+        const existing = JSON.parse(localStorage.getItem('registrations') || '[]')
+        const emailExists = existing.some((r) => r.gmail.toLowerCase() === form.gmail.toLowerCase())
+        if (emailExists) newErrors.gmail = 'This email is already registered'
+      }
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -85,13 +96,19 @@ export default function Register() {
       return
     }
 
-    const registrations = JSON.parse(localStorage.getItem('registrations') || '[]')
-    registrations.push({
+    const registrationData = {
       ...form,
       id: Date.now(),
       createdAt: new Date().toISOString(),
-    })
-    localStorage.setItem('registrations', JSON.stringify(registrations))
+    }
+
+    try {
+      await saveRegistration(registrationData)
+    } catch {
+      const registrations = JSON.parse(localStorage.getItem('registrations') || '[]')
+      registrations.push(registrationData)
+      localStorage.setItem('registrations', JSON.stringify(registrations))
+    }
 
     setSending(true)
     setEmailStatus('')
